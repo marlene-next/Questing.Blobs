@@ -1,2 +1,9 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using blobs.States;
+
+var states = new Dictionary<string, IPresenter>
+{
+    { "MainMenu", new MainMenuPresenter() }
+};
+var stateMachine = new StateMachine(states, "MainMenu");
+
+stateMachine.Start();
