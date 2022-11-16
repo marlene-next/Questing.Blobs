@@ -7,6 +7,9 @@ public class StateMachine
 
     public StateMachine(Dictionary<string, IPresenter> states, string initialState)
     {
+        states.ThrowIfNull(nameof(states));
+        initialState.ThrowIfNull(nameof(initialState));
+
         _states = states;
         _initialState = initialState;
     }
