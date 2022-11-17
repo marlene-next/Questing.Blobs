@@ -19,10 +19,10 @@ public class StateMachine : IStateMachine
     public void Start()
     {
         Console.WriteLine("Start");
-        ChangeState(_initialState, null);
+        ChangeState(_initialState);
     }
 
-    public void ChangeState(string state, IViewModel viewModel)
+    public void ChangeState(string state, IViewModel viewModel = null)
     {
         _states[state].Initialize(viewModel);
         _states[state].Present();

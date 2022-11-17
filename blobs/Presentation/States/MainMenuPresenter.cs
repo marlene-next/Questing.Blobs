@@ -19,17 +19,23 @@ public class MainMenuPresenter : IPresenter
     {
         Console.WriteLine(nameof(MainMenuPresenter));
 
-        Console.WriteLine("[X] explore, [Q] quit");
+        Console.WriteLine("[X] explore, [B] blobdex, [Q] quit");
         var input = Console.ReadKey();
-        if (input.Key == ConsoleKey.Q)
+        switch (input.Key)
         {
-            _stateMachine.Close();
-        }
-        else if (input.Key == ConsoleKey.X)
-        {
-            var blob = new BlobViewModel("Grogo");
-            Console.WriteLine($"Found blob: {blob.Name}");
-            _stateMachine.ChangeState(StateNameConstants.EncounterState, blob);
+            case ConsoleKey.X:
+            {
+                var blob = new BlobViewModel("Grogo");
+                Console.WriteLine($"Found blob: {blob.Name}");
+                _stateMachine.ChangeState(StateNameConstants.EncounterState, blob);
+                break;
+            }
+            case ConsoleKey.B:
+                _stateMachine.ChangeState(StateNameConstants.BlobdexState);
+                break;
+            case ConsoleKey.Q:
+                _stateMachine.Close();
+                break;
         }
     }
 }
