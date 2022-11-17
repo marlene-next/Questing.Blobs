@@ -1,10 +1,10 @@
 ﻿namespace blobs.Application;
 
-public class FoundBlobQuery
+public class DiscoveredBlobQuery
 {
     private readonly IEncounteredBlobStorage _storage;
 
-    public FoundBlobQuery(IEncounteredBlobStorage storage)
+    public DiscoveredBlobQuery(IEncounteredBlobStorage storage)
     {
         storage.ThrowIfNull(nameof(storage));
 

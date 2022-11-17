@@ -15,10 +15,10 @@ public class ExplorationPresenter : PresenterBase
 
     public override void Present()
     {
-        var findBlobCommand = new FindBlobCommand(_encounteredBlobStorage);
+        var findBlobCommand = new DiscoverBlobCommand(_encounteredBlobStorage);
         findBlobCommand.Execute();
 
-        var foundBlobQuery = new FoundBlobQuery(_encounteredBlobStorage);
+        var foundBlobQuery = new DiscoveredBlobQuery(_encounteredBlobStorage);
         var blob = foundBlobQuery.Run();
 
         Console.WriteLine($"Found blob: {blob.Name}");
