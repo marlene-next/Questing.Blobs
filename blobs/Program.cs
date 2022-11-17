@@ -1,9 +1,12 @@
-﻿using blobs.Presentation.States;
+﻿using blobs.Infrastructure;
+using blobs.Presentation.States;
+
+var encounteredBlobStorage = new EncounteredBlobStorage();
 
 var stateMachine = new StateMachine();
 var states = new Dictionary<string, IPresenter>
 {
-    { StateNameConstants.MainMenuState, new MainMenuPresenter(stateMachine) },
+    { StateNameConstants.MainMenuState, new MainMenuPresenter(encounteredBlobStorage, stateMachine) },
     { StateNameConstants.BlobdexState, new BlobdexPresenter(stateMachine) },
     { StateNameConstants.EncounterState, new EncounterPresenter(stateMachine) },
     { StateNameConstants.FightResultsState, new FightResultsPresenter(stateMachine) },
