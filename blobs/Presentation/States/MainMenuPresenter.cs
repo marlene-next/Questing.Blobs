@@ -1,3 +1,5 @@
+﻿using blobs.Application;
+
 namespace blobs.Presentation.States;
 
 public class MainMenuPresenter : IPresenter
@@ -15,9 +17,16 @@ public class MainMenuPresenter : IPresenter
     {
         Console.WriteLine(nameof(MainMenuPresenter));
 
-        Console.WriteLine("[Q] quit");
+        Console.WriteLine("[X] explore, [Q] quit");
         var input = Console.ReadKey();
         if (input.Key == ConsoleKey.Q)
+        {
             _stateMachine.Close();
+        }
+        else if (input.Key == ConsoleKey.X)
+        {
+            var blob = new BlobViewModel("Grogo");
+            Console.WriteLine($"Found {blob.Name}");
+        }
     }
 }
