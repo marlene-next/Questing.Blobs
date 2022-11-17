@@ -24,5 +24,13 @@ public class EncounterPresenter : IPresenter
     {
         Console.WriteLine(nameof(EncounterPresenter));
         Console.WriteLine($"{_blob.Name}");
+        Console.WriteLine("[A] attack");
+
+        var input = Console.ReadKey();
+
+        if (input.Key == ConsoleKey.A)
+        {
+            _stateMachine.ChangeState(StateNameConstants.FightResultsState);
+        }
     }
 }
