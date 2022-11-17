@@ -1,19 +1,22 @@
 ﻿namespace blobs.Application;
 
-public class FoundBlobQuery
+public class AttackedBlobQuery
 {
     private readonly IEncounteredBlobStorage _storage;
+    private readonly Guid _blobId;
 
-    public FoundBlobQuery(IEncounteredBlobStorage storage)
+    public AttackedBlobQuery(IEncounteredBlobStorage storage, Guid blobId)
     {
         storage.ThrowIfNull(nameof(storage));
+        blobId.ThrowIfNull(nameof(blobId));
 
         _storage = storage;
+        _blobId = blobId;
     }
 
     public BlobViewModel Run()
     {
-        var blob = _storage.GetEncounteredBlob();
+        var blob = _storage.GetBlob(_blobId);
 
         return new BlobViewModel(blob.Id, blob.Name, blob.Health);
     }

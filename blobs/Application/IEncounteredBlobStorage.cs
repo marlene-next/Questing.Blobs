@@ -4,6 +4,7 @@ namespace blobs.Application;
 
 public interface IEncounteredBlobStorage
 {
-    EncounteredBlobModel GetBlob();
+    EncounteredBlobModel GetEncounteredBlob();
+    EncounteredBlobModel GetBlob(Guid id);
     void AddBlob(EncounteredBlobModel blob);
 }

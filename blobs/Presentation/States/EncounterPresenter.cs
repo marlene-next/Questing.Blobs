@@ -4,9 +4,15 @@ namespace blobs.Presentation.States;
 
 public class EncounterPresenter : PresenterBase
 {
+    private readonly IEncounteredBlobStorage _encounteredBlobStorage;
     private BlobViewModel _blob;
 
-    public EncounterPresenter(IStateMachine stateMachine) : base(stateMachine) { }
+    public EncounterPresenter(IEncounteredBlobStorage encounteredBlobStorage, IStateMachine stateMachine) : base(stateMachine)
+    {
+        encounteredBlobStorage.ThrowIfNull(nameof(encounteredBlobStorage));
+
+        _encounteredBlobStorage = encounteredBlobStorage;
+    }
 
     public override void Initialize(IViewModel viewModel)
     {
@@ -21,23 +27,33 @@ public class EncounterPresenter : PresenterBase
 
         var input = Console.ReadKey();
 
-        if (input.Key == ConsoleKey.A)
+        switch (input.Key)
         {
-            if (_blob.Health > 0)
-            {
-                Present();
-                return;
-            }
-            
-            StateMachine.ChangeState(StateNameConstants.FightResultsState);
-        }
-        else if (input.Key == ConsoleKey.C)
-        {
-            StateMachine.ChangeState(StateNameConstants.CatchResultsState, _blob);
-        }
-        else if (input.Key == ConsoleKey.F)
-        {
-            StateMachine.ChangeState(StateNameConstants.FleeResultsState);
+            case ConsoleKey.A:
+                var previousHealth = _blob.Health;
+
+                var attackBlobCommand = new AttackBlobCommand(_encounteredBlobStorage, _blob.Id);
+                attackBlobCommand.Execute();
+
+                var attackedBlobQuery = new AttackedBlobQuery(_encounteredBlobStorage, _blob.Id);
+                _blob = attackedBlobQuery.Run();
+
+                Console.WriteLine($"{_blob.Name}: {_blob.Health} HP (-{previousHealth - _blob.Health})");
+
+                if (_blob.Health > 0)
+                {
+                    Present();
+                    return;
+                }
+
+                StateMachine.ChangeState(StateNameConstants.FightResultsState);
+                break;
+            case ConsoleKey.C:
+                StateMachine.ChangeState(StateNameConstants.CatchResultsState, _blob);
+                break;
+            case ConsoleKey.F:
+                StateMachine.ChangeState(StateNameConstants.FleeResultsState);
+                break;
         }
     }
 }
