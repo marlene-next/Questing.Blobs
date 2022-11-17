@@ -1,8 +1,11 @@
-﻿namespace blobs.Presentation.States;
+﻿using blobs.Application;
+
+namespace blobs.Presentation.States;
 
 public class EncounterPresenter : IPresenter
 {
     private readonly IStateMachine _stateMachine;
+    private BlobViewModel _blob;
 
     public EncounterPresenter(IStateMachine stateMachine)
     {
@@ -11,8 +14,15 @@ public class EncounterPresenter : IPresenter
         _stateMachine = stateMachine;
     }
 
+    public void Initialize(IViewModel viewModel)
+    {
+        viewModel.ThrowIfNull(nameof(viewModel));
+        _blob = (BlobViewModel) viewModel;
+    }
+
     public void Present()
     {
         Console.WriteLine(nameof(EncounterPresenter));
+        Console.WriteLine($"{_blob.Name}");
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace blobs.Presentation.States;
+﻿using blobs.Application;
+
+namespace blobs.Presentation.States;
 
 public class StateMachine : IStateMachine
 {
@@ -17,11 +19,12 @@ public class StateMachine : IStateMachine
     public void Start()
     {
         Console.WriteLine("Start");
-        ChangeState(_initialState);
+        ChangeState(_initialState, null);
     }
 
-    public void ChangeState(string state)
+    public void ChangeState(string state, IViewModel viewModel)
     {
+        _states[state].Initialize(viewModel);
         _states[state].Present();
     }
 

@@ -1,6 +1,6 @@
 ﻿namespace blobs.Application;
 
-public class BlobViewModel
+public class BlobViewModel : IViewModel
 {
     public string Name { get; }
 

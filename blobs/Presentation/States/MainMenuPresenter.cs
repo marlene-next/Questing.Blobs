@@ -13,6 +13,8 @@ public class MainMenuPresenter : IPresenter
         _stateMachine = stateMachine;
     }
 
+    public void Initialize(IViewModel viewModel) { }
+
     public void Present()
     {
         Console.WriteLine(nameof(MainMenuPresenter));
@@ -26,8 +28,8 @@ public class MainMenuPresenter : IPresenter
         else if (input.Key == ConsoleKey.X)
         {
             var blob = new BlobViewModel("Grogo");
-            Console.WriteLine($"Found {blob.Name}");
-            _stateMachine.ChangeState(StateNameConstants.EncounterState);
+            Console.WriteLine($"Found blob: {blob.Name}");
+            _stateMachine.ChangeState(StateNameConstants.EncounterState, blob);
         }
     }
 }
