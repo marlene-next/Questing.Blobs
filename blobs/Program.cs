@@ -1,4 +1,4 @@
-﻿using blobs.States;
+﻿using blobs.Presentation.States;
 
 var stateMachine = new StateMachine();
 var states = new Dictionary<string, IPresenter>

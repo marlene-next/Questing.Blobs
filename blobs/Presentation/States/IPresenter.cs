@@ -1,4 +1,4 @@
-﻿namespace blobs.States;
+﻿namespace blobs.Presentation.States;
 
 public interface IPresenter
 {
