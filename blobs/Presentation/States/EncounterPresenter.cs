@@ -16,7 +16,6 @@ public class EncounterPresenter : PresenterBase
 
     public override void Present()
     {
-        Console.WriteLine(nameof(EncounterPresenter));
         Console.WriteLine($"{_blob.Name}");
         Console.WriteLine("[A] attack, [C] catch, [F] flee");
 
