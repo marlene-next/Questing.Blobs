@@ -7,7 +7,8 @@ var states = new Dictionary<string, IPresenter>
     { StateNameConstants.BlobdexState, new BlobdexPresenter(stateMachine) },
     { StateNameConstants.EncounterState, new EncounterPresenter(stateMachine) },
     { StateNameConstants.FightResultsState, new FightResultsPresenter(stateMachine) },
-    { StateNameConstants.CatchResultsState, new CatchResultsPresenter(stateMachine) }
+    { StateNameConstants.CatchResultsState, new CatchResultsPresenter(stateMachine) },
+    { StateNameConstants.FleeResultsState, new FleeResultsPresenter(stateMachine) }
 };
 
 stateMachine.Initialize(states, StateNameConstants.MainMenuState);

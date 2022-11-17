@@ -2,29 +2,22 @@
 
 namespace blobs.Presentation.States;
 
-public class CatchResultsPresenter : IPresenter
+public class CatchResultsPresenter : PresenterBase
 {
-    private readonly IStateMachine _stateMachine;
-    
     private BlobViewModel _blob;
     
-    public CatchResultsPresenter(IStateMachine stateMachine)
-    {
-        stateMachine.ThrowIfNull(nameof(stateMachine));
+    public CatchResultsPresenter(IStateMachine stateMachine) : base(stateMachine) { }
 
-        _stateMachine = stateMachine;
-    }
-    
-    public void Initialize(IViewModel viewModel)
+    public override void Initialize(IViewModel viewModel)
     {
         viewModel.ThrowIfNull(nameof(viewModel));
         
         _blob = (BlobViewModel)viewModel;
     }
 
-    public void Present()
+    public override void Present()
     {
         Console.WriteLine($"Caught {_blob.Name}!");
-        _stateMachine.ChangeState(StateNameConstants.MainMenuState);
+        StateMachine.ChangeState(StateNameConstants.MainMenuState);
     }
 }

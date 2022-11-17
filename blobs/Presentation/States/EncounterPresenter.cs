@@ -2,39 +2,37 @@
 
 namespace blobs.Presentation.States;
 
-public class EncounterPresenter : IPresenter
+public class EncounterPresenter : PresenterBase
 {
-    private readonly IStateMachine _stateMachine;
     private BlobViewModel _blob;
 
-    public EncounterPresenter(IStateMachine stateMachine)
-    {
-        stateMachine.ThrowIfNull(nameof(stateMachine));
+    public EncounterPresenter(IStateMachine stateMachine) : base(stateMachine) { }
 
-        _stateMachine = stateMachine;
-    }
-
-    public void Initialize(IViewModel viewModel)
+    public override void Initialize(IViewModel viewModel)
     {
         viewModel.ThrowIfNull(nameof(viewModel));
         _blob = (BlobViewModel) viewModel;
     }
 
-    public void Present()
+    public override void Present()
     {
         Console.WriteLine(nameof(EncounterPresenter));
         Console.WriteLine($"{_blob.Name}");
-        Console.WriteLine("[A] attack, [C] catch");
+        Console.WriteLine("[A] attack, [C] catch, [F] flee");
 
         var input = Console.ReadKey();
 
         if (input.Key == ConsoleKey.A)
         {
-            _stateMachine.ChangeState(StateNameConstants.FightResultsState);
+            StateMachine.ChangeState(StateNameConstants.FightResultsState);
         }
         else if (input.Key == ConsoleKey.C)
         {
-            _stateMachine.ChangeState(StateNameConstants.CatchResultsState, _blob);
+            StateMachine.ChangeState(StateNameConstants.CatchResultsState, _blob);
+        }
+        else if (input.Key == ConsoleKey.F)
+        {
+            StateMachine.ChangeState(StateNameConstants.FleeResultsState);
         }
     }
 }

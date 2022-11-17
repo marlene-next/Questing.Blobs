@@ -2,20 +2,11 @@
 
 namespace blobs.Presentation.States;
 
-public class MainMenuPresenter : IPresenter
+public class MainMenuPresenter : PresenterBase
 {
-    private readonly IStateMachine _stateMachine;
+    public MainMenuPresenter(IStateMachine stateMachine) : base(stateMachine) { }
 
-    public MainMenuPresenter(IStateMachine stateMachine)
-    {
-        stateMachine.ThrowIfNull(nameof(stateMachine));
-
-        _stateMachine = stateMachine;
-    }
-
-    public void Initialize(IViewModel viewModel) { }
-
-    public void Present()
+    public override void Present()
     {
         Console.WriteLine(nameof(MainMenuPresenter));
 
@@ -27,14 +18,14 @@ public class MainMenuPresenter : IPresenter
             {
                 var blob = new BlobViewModel("Grogo");
                 Console.WriteLine($"Found blob: {blob.Name}");
-                _stateMachine.ChangeState(StateNameConstants.EncounterState, blob);
+                StateMachine.ChangeState(StateNameConstants.EncounterState, blob);
                 break;
             }
             case ConsoleKey.B:
-                _stateMachine.ChangeState(StateNameConstants.BlobdexState);
+                StateMachine.ChangeState(StateNameConstants.BlobdexState);
                 break;
             case ConsoleKey.Q:
-                _stateMachine.Close();
+                StateMachine.Close();
                 break;
         }
     }
