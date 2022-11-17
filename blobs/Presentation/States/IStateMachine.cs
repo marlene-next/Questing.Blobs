@@ -2,5 +2,6 @@
 
 public interface IStateMachine
 {
+    void ChangeState(string state);
     void Close();
 }

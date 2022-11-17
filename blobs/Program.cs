@@ -3,8 +3,9 @@
 var stateMachine = new StateMachine();
 var states = new Dictionary<string, IPresenter>
 {
-    { "MainMenu", new MainMenuPresenter(stateMachine) }
+    { StateNameConstants.MainMenuState, new MainMenuPresenter(stateMachine) },
+    { StateNameConstants.EncounterState, new EncounterPresenter(stateMachine) }
 };
-stateMachine.Initialize(states, "MainMenu");
 
+stateMachine.Initialize(states, StateNameConstants.MainMenuState);
 stateMachine.Start();

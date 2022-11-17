@@ -27,6 +27,7 @@ public class MainMenuPresenter : IPresenter
         {
             var blob = new BlobViewModel("Grogo");
             Console.WriteLine($"Found {blob.Name}");
+            _stateMachine.ChangeState(StateNameConstants.EncounterState);
         }
     }
 }

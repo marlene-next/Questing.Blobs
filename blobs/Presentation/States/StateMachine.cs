@@ -20,7 +20,7 @@ public class StateMachine : IStateMachine
         ChangeState(_initialState);
     }
 
-    private void ChangeState(string state)
+    public void ChangeState(string state)
     {
         _states[state].Present();
     }
