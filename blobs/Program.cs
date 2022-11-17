@@ -1,9 +1,10 @@
 ﻿using blobs.States;
 
+var stateMachine = new StateMachine();
 var states = new Dictionary<string, IPresenter>
 {
-    { "MainMenu", new MainMenuPresenter() }
+    { "MainMenu", new MainMenuPresenter(stateMachine) }
 };
-var stateMachine = new StateMachine(states, "MainMenu");
+stateMachine.Initialize(states, "MainMenu");
 
 stateMachine.Start();

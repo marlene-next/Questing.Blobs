@@ -1,11 +1,11 @@
 ﻿namespace blobs.States;
 
-public class StateMachine
+public class StateMachine : IStateMachine
 {
-    private readonly Dictionary<string, IPresenter> _states;
-    private readonly string _initialState;
+    private Dictionary<string, IPresenter> _states = new();
+    private string _initialState = string.Empty;
 
-    public StateMachine(Dictionary<string, IPresenter> states, string initialState)
+    public void Initialize(Dictionary<string, IPresenter> states, string initialState)
     {
         states.ThrowIfNull(nameof(states));
         initialState.ThrowIfNull(nameof(initialState));
@@ -23,5 +23,10 @@ public class StateMachine
     private void ChangeState(string state)
     {
         _states[state].Present();
+    }
+
+    public void Close()
+    {
+        Console.WriteLine("Close");
     }
 }
