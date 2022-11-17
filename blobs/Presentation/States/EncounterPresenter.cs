@@ -24,6 +24,12 @@ public class EncounterPresenter : PresenterBase
 
         if (input.Key == ConsoleKey.A)
         {
+            if (_blob.Health > 0)
+            {
+                Present();
+                return;
+            }
+            
             StateMachine.ChangeState(StateNameConstants.FightResultsState);
         }
         else if (input.Key == ConsoleKey.C)

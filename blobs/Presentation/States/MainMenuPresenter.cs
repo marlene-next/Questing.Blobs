@@ -16,7 +16,7 @@ public class MainMenuPresenter : PresenterBase
         {
             case ConsoleKey.X:
             {
-                var blob = new BlobViewModel("Grogo");
+                var blob = new BlobViewModel("Grogo", 100);
                 Console.WriteLine($"Found blob: {blob.Name}");
                 StateMachine.ChangeState(StateNameConstants.EncounterState, blob);
                 break;
