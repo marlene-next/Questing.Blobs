@@ -18,7 +18,6 @@ public class StateMachine : IStateMachine
 
     public void Start()
     {
-        Console.WriteLine("Start");
         ChangeState(_initialState);
     }
 

@@ -32,7 +32,7 @@ public class InputHandler
             key = ReadKey();
         } while (!_registeredKeys.ContainsKey(key));
 
-        Console.WriteLine($"... {_registeredKeys[key]}");
+        Console.WriteLine($"... {_registeredKeys[key]}{Environment.NewLine}");
         return key;
     }
 
