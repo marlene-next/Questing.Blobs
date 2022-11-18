@@ -21,10 +21,10 @@ public class StateMachine : IStateMachine
         ChangeState(_initialState);
     }
 
-    public void ChangeState(string state, IViewModel viewModel = null)
+    public void ChangeState(string stateName, IViewModel viewModel = null)
     {
-        _states[state].Initialize(viewModel);
-        _states[state].Present();
+        _states[stateName].Initialize(viewModel);
+        _states[stateName].Present();
     }
 
     public void Close()

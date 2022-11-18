@@ -1,8 +1,9 @@
 ﻿using blobs.Application;
+using blobs.Presentation.Views;
 
 namespace blobs.Presentation.States;
 
-public class EncounterPresenter : PresenterBase
+public class EncounterPresenter : PresenterBase<StubView>
 {
     private readonly IEncounteredBlobStorage _encounteredBlobStorage;
     private BlobViewModel _blob;
@@ -10,8 +11,8 @@ public class EncounterPresenter : PresenterBase
     private readonly IBlobInventoryStorage _blobInventoryStorage;
     private readonly ICaughtBlobStorage _caughtBlobStorage;
 
-    public EncounterPresenter(IStateMachine stateMachine, IEncounteredBlobStorage encounteredBlobStorage,
-        IBlobInventoryStorage blobInventoryStorage, ICaughtBlobStorage caughtBlobStorage) : base(stateMachine)
+    public EncounterPresenter(IStateMachine stateMachine, StubView view, IEncounteredBlobStorage encounteredBlobStorage,
+        IBlobInventoryStorage blobInventoryStorage, ICaughtBlobStorage caughtBlobStorage) : base(stateMachine, view)
     {
         encounteredBlobStorage.ThrowIfNull(nameof(encounteredBlobStorage));
         blobInventoryStorage.ThrowIfNull(nameof(blobInventoryStorage));

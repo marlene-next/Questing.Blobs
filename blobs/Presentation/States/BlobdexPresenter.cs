@@ -1,15 +1,16 @@
 ﻿using blobs.Application;
+using blobs.Presentation.Views;
 
 namespace blobs.Presentation.States;
 
-public class BlobdexPresenter : PresenterBase
+public class BlobdexPresenter : PresenterBase<StubView>
 {
     private InputHandler _inputHandler;
     private IBlobInventoryStorage _blobInventoryStorage;
     private ICaughtBlobStorage _caughtBlobStorage;
 
-    public BlobdexPresenter(IStateMachine stateMachine, IBlobInventoryStorage blobInventoryStorage,
-        ICaughtBlobStorage caughtBlobStorage) : base(stateMachine)
+    public BlobdexPresenter(IStateMachine stateMachine, StubView view, IBlobInventoryStorage blobInventoryStorage,
+        ICaughtBlobStorage caughtBlobStorage) : base(stateMachine, view)
     {
         blobInventoryStorage.ThrowIfNull(nameof(blobInventoryStorage));
         caughtBlobStorage.ThrowIfNull(nameof(caughtBlobStorage));

@@ -1,14 +1,16 @@
 ﻿using blobs.Application;
+using blobs.Presentation.Views;
 
 namespace blobs.Presentation.States;
 
-public class ExplorationPresenter : PresenterBase
+public class ExplorationPresenter : PresenterBase<ExplorationView>
 {
     private readonly IEncounteredBlobStorage _encounteredBlobStorage;
     private readonly IBlobDefinitionProvider _blobDefinitionProvider;
 
-    public ExplorationPresenter(IStateMachine stateMachine, IEncounteredBlobStorage encounteredBlobStorage,
-        IBlobDefinitionProvider blobDefinitionProvider) : base(stateMachine)
+    public ExplorationPresenter(IStateMachine stateMachine, ExplorationView view, 
+        IEncounteredBlobStorage encounteredBlobStorage, IBlobDefinitionProvider blobDefinitionProvider) :
+        base(stateMachine, view)
     {
         encounteredBlobStorage.ThrowIfNull(nameof(encounteredBlobStorage));
         blobDefinitionProvider.ThrowIfNull(nameof(blobDefinitionProvider));
@@ -27,7 +29,8 @@ public class ExplorationPresenter : PresenterBase
         var foundBlobQuery = new DiscoveredBlobQuery(_encounteredBlobStorage);
         var blob = foundBlobQuery.Run();
 
-        Console.WriteLine($"Found blob: {blob.Name}");
+        View.ShowBlobFound(blob);
+        
         StateMachine.ChangeState(StateNameConstants.EncounterState, blob);
     }
 }

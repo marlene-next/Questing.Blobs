@@ -1,12 +1,13 @@
 ﻿using blobs.Application;
+using blobs.Presentation.Views;
 
 namespace blobs.Presentation.States;
 
-public class MainMenuPresenter : PresenterBase
+public class MainMenuPresenter : PresenterBase<StubView>
 {
     private InputHandler _inputHandler;
 
-    public MainMenuPresenter(IStateMachine stateMachine) : base(stateMachine) { }
+    public MainMenuPresenter(IStateMachine stateMachine, StubView view) : base(stateMachine, view) { }
 
     public override void Initialize(IViewModel viewModel)
     {

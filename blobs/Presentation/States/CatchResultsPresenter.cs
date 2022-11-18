@@ -1,12 +1,13 @@
 ﻿using blobs.Application;
+using blobs.Presentation.Views;
 
 namespace blobs.Presentation.States;
 
-public class CatchResultsPresenter : PresenterBase
+public class CatchResultsPresenter : PresenterBase<StubView>
 {
     private BlobViewModel _blob;
     
-    public CatchResultsPresenter(IStateMachine stateMachine) : base(stateMachine) { }
+    public CatchResultsPresenter(IStateMachine stateMachine, StubView view) : base(stateMachine, view) { }
 
     public override void Initialize(IViewModel viewModel)
     {
