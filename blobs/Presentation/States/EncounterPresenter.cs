@@ -7,12 +7,19 @@ public class EncounterPresenter : PresenterBase
     private readonly IEncounteredBlobStorage _encounteredBlobStorage;
     private BlobViewModel _blob;
     private InputHandler _inputHandler;
+    private readonly IBlobInventoryStorage _blobInventoryStorage;
+    private readonly ICaughtBlobStorage _caughtBlobStorage;
 
-    public EncounterPresenter(IEncounteredBlobStorage encounteredBlobStorage, IStateMachine stateMachine) : base(stateMachine)
+    public EncounterPresenter(IStateMachine stateMachine, IEncounteredBlobStorage encounteredBlobStorage,
+        IBlobInventoryStorage blobInventoryStorage, ICaughtBlobStorage caughtBlobStorage) : base(stateMachine)
     {
         encounteredBlobStorage.ThrowIfNull(nameof(encounteredBlobStorage));
+        blobInventoryStorage.ThrowIfNull(nameof(blobInventoryStorage));
+        caughtBlobStorage.ThrowIfNull(nameof(caughtBlobStorage));
 
         _encounteredBlobStorage = encounteredBlobStorage;
+        _blobInventoryStorage = blobInventoryStorage;
+        _caughtBlobStorage = caughtBlobStorage;
     }
 
     public override void Initialize(IViewModel viewModel)
@@ -52,6 +59,10 @@ public class EncounterPresenter : PresenterBase
                 StateMachine.ChangeState(StateNameConstants.FightResultsState);
                 break;
             case ConsoleKey.C:
+                var catchBlobCommand = new CatchBlobCommand(_encounteredBlobStorage, _blob.Id, _blobInventoryStorage,
+                    _caughtBlobStorage);
+                catchBlobCommand.Execute();
+
                 StateMachine.ChangeState(StateNameConstants.CatchResultsState, _blob);
                 break;
             case ConsoleKey.F:
