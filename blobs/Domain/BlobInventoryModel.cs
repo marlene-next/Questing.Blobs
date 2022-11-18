@@ -2,15 +2,15 @@
 
 public class BlobInventoryModel
 {
-    private readonly List<Guid> _blobIds = new();
+    private readonly List<Guid> _ownedBlobIds = new();
 
-    public void AddBlob(Guid blobId)
+    public void AddCaughtBlob(CaughtBlobModel blob)
     {
-        _blobIds.Add(blobId);
+        _ownedBlobIds.Add(blob.Id);
     }
 
-    public IEnumerable<Guid> GetBlobIds()
+    public IEnumerable<Guid> GetOwnedBlobIds()
     {
-        return _blobIds;
+        return _ownedBlobIds;
     }
 }

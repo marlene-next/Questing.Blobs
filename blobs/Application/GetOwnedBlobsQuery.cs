@@ -16,7 +16,7 @@ public class GetOwnedBlobsQuery : IQuery<OwnedBlobsViewModel>
     public OwnedBlobsViewModel Run()
     {
         var inventory = _blobInventoryStorage.GetInventory();
-        var blobIds = inventory.GetBlobIds();
+        var blobIds = inventory.GetOwnedBlobIds();
 
         var blobModels = _caughtBlobStorage.GetBlobModels(blobIds);
 

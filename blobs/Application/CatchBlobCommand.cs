@@ -29,7 +29,7 @@ public class CatchBlobCommand : ICommand
         var blob = new CaughtBlobModel(encounteredBlob.Name, encounteredBlob.Health);
 
         var inventory = _blobInventoryStorage.GetInventory();
-        inventory.AddBlob(blob.Id);
+        inventory.AddCaughtBlob(blob);
 
         _caughtBlobStorage.AddBlob(blob);
     }
