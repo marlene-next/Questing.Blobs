@@ -6,6 +6,7 @@ public class EncounterPresenter : PresenterBase
 {
     private readonly IEncounteredBlobStorage _encounteredBlobStorage;
     private BlobViewModel _blob;
+    private InputHandler _inputHandler;
 
     public EncounterPresenter(IEncounteredBlobStorage encounteredBlobStorage, IStateMachine stateMachine) : base(stateMachine)
     {
@@ -18,16 +19,18 @@ public class EncounterPresenter : PresenterBase
     {
         viewModel.ThrowIfNull(nameof(viewModel));
         _blob = (BlobViewModel) viewModel;
+
+        _inputHandler = InputHandler.Create()
+            .Add(ConsoleKey.A, "attack")
+            .Add(ConsoleKey.C, "catch")
+            .Add(ConsoleKey.F, "flee");
     }
 
     public override void Present()
     {
         Console.WriteLine($"{_blob.Name}");
-        Console.WriteLine("[A] attack, [C] catch, [F] flee");
 
-        var input = Console.ReadKey();
-
-        switch (input.Key)
+        switch (_inputHandler.WaitForKey())
         {
             case ConsoleKey.A:
                 var previousHealth = _blob.Health;

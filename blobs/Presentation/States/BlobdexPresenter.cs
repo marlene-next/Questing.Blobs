@@ -5,6 +5,7 @@ namespace blobs.Presentation.States;
 public class BlobdexPresenter : IPresenter
 {
     private readonly IStateMachine _stateMachine;
+    private InputHandler _inputHandler;
 
     public BlobdexPresenter(IStateMachine stateMachine)
     {
@@ -13,15 +14,17 @@ public class BlobdexPresenter : IPresenter
         _stateMachine = stateMachine;
     }
 
-    public void Initialize(IViewModel viewModel) { }
+    public void Initialize(IViewModel viewModel)
+    {
+        _inputHandler = InputHandler.Create().Add(ConsoleKey.B, "back");
+    }
 
     public void Present()
     {
         Console.WriteLine(nameof(BlobdexPresenter));
 
-        Console.WriteLine("[B] back");
-        var input = Console.ReadKey();
-        if (input.Key == ConsoleKey.B)
+        var key = _inputHandler.WaitForKey();
+        if (key == ConsoleKey.B)
             _stateMachine.ChangeState(StateNameConstants.MainMenuState);
     }
 }

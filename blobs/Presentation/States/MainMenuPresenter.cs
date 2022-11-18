@@ -1,14 +1,25 @@
-﻿namespace blobs.Presentation.States;
+﻿using blobs.Application;
+
+namespace blobs.Presentation.States;
 
 public class MainMenuPresenter : PresenterBase
 {
+    private InputHandler _inputHandler;
+
     public MainMenuPresenter(IStateMachine stateMachine) : base(stateMachine) { }
+
+    public override void Initialize(IViewModel viewModel)
+    {
+        base.Initialize(viewModel);
+        _inputHandler = InputHandler.Create()
+            .Add(ConsoleKey.X, "explore")
+            .Add(ConsoleKey.B, "blobdex")
+            .Add(ConsoleKey.Q, "quit");
+    }
 
     public override void Present()
     {
-        Console.WriteLine("[X] explore, [B] blobdex, [Q] quit");
-        var input = Console.ReadKey();
-        switch (input.Key)
+        switch (_inputHandler.WaitForKey())
         {
             case ConsoleKey.X:
                 StateMachine.ChangeState(StateNameConstants.ExplorationState);
