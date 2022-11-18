@@ -12,6 +12,8 @@ public class FleeResultsPresenter : PresenterBase<StubView>
     public override void Present()
     {
         Console.WriteLine("You fled...");
+        Console.WriteLine();
+
         StateMachine.ChangeState(StateNameConstants.MainMenuState);
     }
 }

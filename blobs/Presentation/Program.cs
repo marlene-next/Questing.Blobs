@@ -24,6 +24,6 @@ var states = new Dictionary<string, IPresenter>
 
 stateMachine.Initialize(states, StateNameConstants.MainMenuState);
 
-Console.WriteLine($"{Environment.NewLine}{Environment.NewLine}Welcome to Blobmon!{Environment.NewLine}");
+Console.WriteLine($"{Environment.NewLine}Welcome to Blobland!{Environment.NewLine}");
 
 stateMachine.Start();

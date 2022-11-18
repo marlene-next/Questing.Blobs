@@ -11,7 +11,9 @@ public class FightResultsPresenter : PresenterBase<StubView>
 
     public override void Present()
     {
-        Console.WriteLine("Your pokemon gained XP:");
+        Console.WriteLine("Your blob gained XP: 5");
+        Console.WriteLine();
+
         StateMachine.ChangeState(StateNameConstants.MainMenuState);
     }
 }

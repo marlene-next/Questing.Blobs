@@ -30,10 +30,15 @@ public class BlobdexPresenter : PresenterBase<StubView>
         var ownedBlobsViewModel = getOwnedBlobsQuery.Run();
 
         if (!ownedBlobsViewModel.OwnedBlobs.Any())
+        {
             Console.WriteLine("No blobs caught yet.");
+            Console.WriteLine();
+        }
 
         foreach (var blobViewModel in ownedBlobsViewModel.OwnedBlobs)
+        {
             Console.WriteLine(blobViewModel.ToString());
+        }
 
         var key = _inputHandler.WaitForKey();
         if (key == ConsoleKey.B)

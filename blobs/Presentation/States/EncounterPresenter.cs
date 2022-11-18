@@ -36,8 +36,6 @@ public class EncounterPresenter : PresenterBase<StubView>
 
     public override void Present()
     {
-        Console.WriteLine($"{_blob.Name}");
-
         switch (_inputHandler.WaitForKey())
         {
             case ConsoleKey.A:
@@ -50,6 +48,7 @@ public class EncounterPresenter : PresenterBase<StubView>
                 _blob = attackedBlobQuery.Run();
 
                 Console.WriteLine($"{_blob.Name}: {_blob.Health} HP (-{previousHealth - _blob.Health})");
+                Console.WriteLine();
 
                 if (_blob.Health > 0)
                 {

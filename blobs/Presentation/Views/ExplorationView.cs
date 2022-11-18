@@ -6,6 +6,7 @@ public class ExplorationView : IView
 {
     public void ShowBlobFound(BlobViewModel blob)
     {
-        Console.WriteLine($"Found blob: {blob.Name}");
+        Console.WriteLine($"Found blob: {blob.Name} {blob.Health} HP");
+        Console.WriteLine();
     }
 }

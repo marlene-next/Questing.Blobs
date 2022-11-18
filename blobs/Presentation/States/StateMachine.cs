@@ -29,6 +29,6 @@ public class StateMachine : IStateMachine
 
     public void Close()
     {
-        Console.WriteLine("Close");
+        // let the program run to its end
     }
 }
