@@ -2,7 +2,7 @@
 
 namespace blobs.Application;
 
-public class DiscoverBlobCommand
+public class DiscoverBlobCommand : ICommand
 {
     private readonly IEncounteredBlobStorage _storage;
     private readonly IBlobDefinitionProvider _blobDefinitionProvider;

@@ -1,10 +1,10 @@
 ﻿namespace blobs.Application;
 
-public class AttackBlobCommand
+public class AttackBlobCommand : ICommand
 {
     private readonly IEncounteredBlobStorage _storage;
     private readonly Guid _blobId;
-    
+
     public AttackBlobCommand(IEncounteredBlobStorage storage, Guid blobId)
     {
         storage.ThrowIfNull(nameof(storage));
@@ -13,11 +13,11 @@ public class AttackBlobCommand
         _storage = storage;
         _blobId = blobId;
     }
-    
+
     public void Execute()
     {
         var attackingBlobStrength = 10;
-        var blob =_storage.GetBlob(_blobId);
+        var blob = _storage.GetBlob(_blobId);
         blob.DecreaseHealth(attackingBlobStrength);
     }
 }
