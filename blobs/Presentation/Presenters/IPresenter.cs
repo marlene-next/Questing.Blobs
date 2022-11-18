@@ -1,6 +1,6 @@
 ﻿using blobs.Application;
 
-namespace blobs.Presentation.States;
+namespace blobs.Presentation.Presenters;
 
 public interface IPresenter
 {

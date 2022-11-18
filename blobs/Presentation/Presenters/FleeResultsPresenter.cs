@@ -1,7 +1,8 @@
 ﻿using blobs.Application;
+using blobs.Presentation.States;
 using blobs.Presentation.Views;
 
-namespace blobs.Presentation.States;
+namespace blobs.Presentation.Presenters;
 
 public class FleeResultsPresenter : PresenterBase<StubView>
 {
