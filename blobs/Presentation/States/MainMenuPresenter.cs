@@ -10,7 +10,6 @@ public class MainMenuPresenter : PresenterBase
 
     public override void Initialize(IViewModel viewModel)
     {
-        base.Initialize(viewModel);
         _inputHandler = InputHandler.Create()
             .Add(ConsoleKey.X, "explore")
             .Add(ConsoleKey.B, "blobdex")

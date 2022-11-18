@@ -13,6 +13,8 @@ public class ExplorationPresenter : PresenterBase
         _encounteredBlobStorage = encounteredBlobStorage;
     }
 
+    public override void Initialize(IViewModel viewModel) { }
+
     public override void Present()
     {
         var findBlobCommand = new DiscoverBlobCommand(_encounteredBlobStorage);
