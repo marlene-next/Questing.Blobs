@@ -8,4 +8,9 @@ public class BlobInventoryModel
     {
         _blobIds.Add(blobId);
     }
+
+    public IEnumerable<Guid> GetBlobIds()
+    {
+        return _blobIds;
+    }
 }

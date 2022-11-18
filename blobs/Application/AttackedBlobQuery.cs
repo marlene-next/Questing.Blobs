@@ -1,6 +1,6 @@
 ﻿namespace blobs.Application;
 
-public class AttackedBlobQuery
+public class AttackedBlobQuery : IQuery<BlobViewModel>
 {
     private readonly IEncounteredBlobStorage _storage;
     private readonly Guid _blobId;

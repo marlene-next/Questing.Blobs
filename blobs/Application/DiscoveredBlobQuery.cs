@@ -1,6 +1,6 @@
 ﻿namespace blobs.Application;
 
-public class DiscoveredBlobQuery
+public class DiscoveredBlobQuery : IQuery<BlobViewModel>
 {
     private readonly IEncounteredBlobStorage _storage;
 

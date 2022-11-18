@@ -10,7 +10,7 @@ var stateMachine = new StateMachine();
 var states = new Dictionary<string, IPresenter>
 {
     { StateNameConstants.MainMenuState, new MainMenuPresenter(stateMachine) },
-    { StateNameConstants.BlobdexState, new BlobdexPresenter(stateMachine) },
+    { StateNameConstants.BlobdexState, new BlobdexPresenter(stateMachine, blobInventoryStorage, caughtBlobStorage) },
     { StateNameConstants.ExplorationState, new ExplorationPresenter(stateMachine, encounteredBlobStorage, blobDefinitionProvider) },
     { StateNameConstants.EncounterState, new EncounterPresenter(stateMachine, encounteredBlobStorage, blobInventoryStorage, caughtBlobStorage) },
     { StateNameConstants.FightResultsState, new FightResultsPresenter(stateMachine) },

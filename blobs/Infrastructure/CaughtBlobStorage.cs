@@ -13,4 +13,9 @@ public class CaughtBlobStorage : ICaughtBlobStorage
 
         _blobModels.Add(blob);
     }
+
+    public IEnumerable<CaughtBlobModel> GetBlobModels(IEnumerable<Guid> ids)
+    {
+        return _blobModels.Where(blobModel => ids.Contains(blobModel.Id));
+    }
 }
